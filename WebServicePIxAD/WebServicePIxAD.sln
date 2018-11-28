@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServicePIxAD", "WebServicePIxAD\WebServicePIxAD.csproj", "{E6068C92-D58B-44B2-AD8F-95312F7AFA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectAD", "ConnectAD\ConnectAD.csproj", "{934FAC91-2035-42A2-AFB3-586D478D00FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentação", "Documentação", "{46E35B57-3923-430C-BAE8-05938D49208F}"
+	ProjectSection(SolutionItems) = preProject
+		Documentação\documentacao.shfbproj = Documentação\documentacao.shfbproj
+		Documentação\Help\Documentation.chm = Documentação\Help\Documentation.chm
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://wchltfs01:8080/tfs/eep
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ConnectAD\\ConnectAD.csproj
+		SccProjectName1 = ConnectAD
+		SccLocalPath1 = ConnectAD
+		SccProjectUniqueName2 = WebServicePIxAD\\WebServicePIxAD.csproj
+		SccProjectName2 = WebServicePIxAD
+		SccLocalPath2 = WebServicePIxAD
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6068C92-D58B-44B2-AD8F-95312F7AFA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6068C92-D58B-44B2-AD8F-95312F7AFA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6068C92-D58B-44B2-AD8F-95312F7AFA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6068C92-D58B-44B2-AD8F-95312F7AFA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{934FAC91-2035-42A2-AFB3-586D478D00FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{934FAC91-2035-42A2-AFB3-586D478D00FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{934FAC91-2035-42A2-AFB3-586D478D00FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{934FAC91-2035-42A2-AFB3-586D478D00FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

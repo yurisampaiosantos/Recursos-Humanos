@@ -1,0 +1,308 @@
+﻿<Window x:Class="TOTEM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Estaleiro Enseada do Paraguaçu S.A." Height="786" Width="1024"
+        WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize"
+        Icon="img/favicon2.jpg"
+>
+<!--<Window x:Class="TOTEM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Estaleiro Enseada do Paraguaçu S.A." Height="786" Width="1024"
+        Icon="img/favicon2.jpg"
+>-->
+    <!-- <Head> -->
+
+    <Window.Resources >
+
+        <!-- Animations -->
+
+        <Storyboard x:Key="fadeoutdemo">
+            <ColorAnimation
+                Storyboard.TargetName="demonstrativo"
+                Storyboard.TargetProperty="Background.Color"
+                To="#bcc4c7" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="fadeoutrecibo">
+            <ColorAnimation
+                Storyboard.TargetName="recibo"
+                Storyboard.TargetProperty="Background.Color"
+                To="#bcc4c7" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="fadeoutinforme">
+            <ColorAnimation
+                Storyboard.TargetName="informe"
+                Storyboard.TargetProperty="Background.Color"
+                To="#bcc4c7" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="fadeininforme">
+            <ColorAnimation
+                Storyboard.TargetName="informe"
+                Storyboard.TargetProperty="Background.Color"
+                To="#1f3c4a" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="fadeinrecibo">
+            <ColorAnimation
+                Storyboard.TargetName="recibo"
+                Storyboard.TargetProperty="Background.Color"
+                To="#1f3c4a" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="fadeindemo">
+            <ColorAnimation
+                Storyboard.TargetName="demonstrativo"
+                Storyboard.TargetProperty="Background.Color"
+                To="#1f3c4a" Duration="0:0:0:0.2"/>
+        </Storyboard>
+        
+        <!-- 
+            One single animation that will handle the fading in of calendar elements.
+        
+            To be honest, the idea is great, but it still requires an attribute, namely
+            Storyboard.TargetName, which defeats the purpose because it's the exact thing
+            we're were attempting to avoid by doing it here...
+        -->
+        <Storyboard x:Key="fadeInCalendarItem">
+            <DoubleAnimation 
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="1" Duration="0:0:0:0.5" />
+        </Storyboard>
+
+        <!-- CSS-like styles -->
+
+        <Style x:Key="containercalendario" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="#0099d9" />
+        </Style>
+        <Style x:Key="calendariotext" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0,105,0,35" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Foreground" Value="#FFF" />
+            <Setter Property="LineHeight" Value="20" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style x:Key="calendariogrid" TargetType="Canvas">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Height" Value="160" />
+        </Style>
+        <Style x:Key="calendarioimage" TargetType="Image">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="85" />
+            <Setter Property="Canvas.Top" Value="20" />
+            <Setter Property="Canvas.Left" Value="107.5" />
+        </Style>
+        <Style x:Key="item0" TargetType="Label">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="#0099df" />
+        </Style>
+        <Style x:Key="item1" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Background" Value="#0081bb" />
+        </Style>
+        <Style x:Key="item2" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Background" Value="#00be9c" />
+        </Style>
+        <Style x:Key="item3" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Background" Value="#02a384" />
+        </Style>
+        <Style x:Key="item4" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Background" Value="#fe7f0a" />
+        </Style>
+        <Style x:Key="item5" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="Background" Value="#f35202" />
+        </Style>
+        
+        <!-- When no data is to be shown, we instead give this response: -->
+        <Style x:Key="itemNoExhibition" TargetType="Label">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="700" />
+            <Setter Property="Height" Value="540" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="Foreground" Value="#535353" />
+        </Style>
+        
+        <!-- This is the confirmation dialog -->
+        <Style x:Key="promptDialog" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="550" />
+            <Setter Property="Height" Value="240" />
+            <Setter Property="Background" Value="#1c3d50" />
+        </Style>
+        <Style x:Key="promptGrid" TargetType="Grid">
+            <Setter Property="Width" Value="550" />
+            <Setter Property="Height" Value="240" />
+        </Style>
+        <Style x:Key="promptTitle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="promptItemName" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="promptItemDate" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="promptBtnYes" TargetType="Label">
+            <Setter Property="Background" Value="#02a384" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="promptBtnNo" TargetType="Label">
+            <Setter Property="Background" Value="#02a384" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Grid.Row" Value="5" />
+        </Style>
+        <Style x:Key="promptIcon" TargetType="Image">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        
+        <!-- A special case is opened when there is an error (smaller fonts) -->
+        <Style x:Key="ErrorText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="img/bg_noise.png" 
+                    TileMode="Tile" Stretch="None"
+                    Viewport="0,0,25,25" ViewportUnits="Absolute" />
+    </Window.Background>
+    <!-- <Body> -->
+
+    <Window.Content>
+        <Grid Name="main" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="130" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="670" />
+                <ColumnDefinition Width="0" />
+                <!-- This would be the navigation buttons column -->
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="360" />
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Row="3" Grid.Column="1" Name="Items" Height="540" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <!-- Space reserved for the calendar labels -->
+            </WrapPanel>
+            <Grid HorizontalAlignment="Left" Grid.Row="3" Grid.Column="4" VerticalAlignment="Top" Width="180" Height="540" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180" />
+                    <RowDefinition Height="180" />
+                    <RowDefinition Height="180" />
+                </Grid.RowDefinitions>
+                <Label Cursor="Hand" FontSize="20" Name="demonstrativo" Grid.Row="0" Width="180" Margin="0, 5" MouseDown="Demonstrativo_MouseDown" Background="#1f3c4a">
+                    <Label.Content>
+                        <Grid Width="170">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="img/img1.png" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Foreground="White" >
+                                Demonstrativo<LineBreak/> de Pagamento
+                            </TextBlock>
+                        </Grid>
+                    </Label.Content>
+                </Label>
+                <Label Cursor="Hand" FontSize="20" Name="recibo" Background="#1f3c4a" Grid.Row="1" Width="180" Margin="0, 5" MouseDown="Recibo_MouseDown" >
+                    <Label.Content>
+                        <Grid Width="170">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" VerticalAlignment="Top">
+                                Recibo<LineBreak /> de Férias
+                            </TextBlock>
+                            <Image Grid.Row="0" Source="img/img2.png" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Label.Content>
+                </Label>
+                <Label Cursor="Hand" FontSize="20" Grid.Row="2" Name="informe" Background="#1f3c4a" Width="180" Margin="0, 5" MouseDown="Informe_MouseDown">
+                    <Label.Content>
+                        <Grid Width="170">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Foreground="White">
+                                Informe de Rendimento
+                            </TextBlock>
+                            <Image Grid.Row="0" Source="img/img3.png" Width="80" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Label.Content>
+                </Label>
+            </Grid>
+            <Label Grid.Column="0" Grid.Row="1" Background="#bcc4c7" Width="140"  HorizontalAlignment="Left" Name="quitter" MouseDown="quitter_MouseDown" Cursor="Hand" Margin="0,15,0,0">
+                <Grid Width="130">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="img/arrowback.png" Margin="15" />
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFF" FontSize="20">
+                        Sair
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="360" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                
+                <!-- User information and other instruction panels... -->
+                
+                <TextBlock FontSize="35pt"  Foreground="#535353" Grid.Column="0" Grid.Row="0" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Name="lblName" >
+                    
+                </TextBlock>
+                <TextBlock Foreground="#535353" FontSize="20pt" Grid.Column="0" Grid.Row="1" Background="Transparent" HorizontalAlignment="Left">
+                    Matrícula:
+                </TextBlock>
+                <TextBlock Foreground="#535353" Grid.Column="0" Grid.Row="1" FontSize="20pt" Background="Transparent" HorizontalAlignment="Left" Margin="120,0,0,0" Name="lblSapNumber" >
+                    
+                </TextBlock>
+                <TextBlock FontSize="15pt" Foreground="#535353" Grid.Column="0" Grid.Row="2" Background="Transparent" HorizontalAlignment="Left">
+                    Toque um item abaixo para imprimí-lo
+                </TextBlock>
+                <Label Width="352"  Grid.Column="2" Grid.RowSpan="3" Background="#c0392b" Margin="0,15,0,0">
+                    <Image Source="img/logo_button.png" Margin="25" />
+                </Label>
+            </Grid>
+        </Grid>
+    </Window.Content>
+</Window>
